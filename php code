@@ -1,0 +1,43 @@
+<?php
+$servername = "localhost";
+$username = "your_username";
+$password = "your_password";
+$dbname = "your_database";
+
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+// Prepare the SQL statement
+$stmt = $conn->prepare("INSERT INTO users (name, age, weight, email, health_report) VALUES (?, ?, ?, ?, ?)");
+
+// Bind the parameters
+$stmt->bind_param("siiss", $name, $age, $weight, $email, $healthReport);
+
+// Get the form data
+$name = $_POST['name'];
+$age = $_POST['age'];
+$weight = $_POST['weight'];
+$email = $_POST['email'];
+$healthReport = $_FILES['healthReport']['name'];
+
+// Upload the PDF file
+$targetDir = "uploads/";
+$targetFile = $targetDir . basename($_FILES["healthReport"]["name"]);
+
+if (move_uploaded_file($_FILES["healthReport"]["tmp_name"], $targetFile)) {
+  // File uploaded successfully, continue with the database insertion
+  $stmt->execute();
+  echo "Form submitted successfully!";
+} else {
+  echo "Error uploading file.";
+}
+
+// Close the statement and connection
+$stmt->close();
+$conn->close();
+?>
