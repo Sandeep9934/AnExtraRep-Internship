@@ -1,0 +1,11 @@
+ .form-container {
+      width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f2f2f2;
+      border-radius: 5px;
+    }
+    .form-container label, .form-container input, .form-container button {
+      display: block;
+      margin-bottom: 10px;
+    }
