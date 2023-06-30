@@ -1,0 +1,21 @@
+  <div class="form-container">
+    <h2>Health Form</h2>
+    <form id="healthForm" enctype="multipart/form-data">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" required>
+
+      <label for="weight">Weight:</label>
+      <input type="number" id="weight" name="weight" required>
+
+      <label for="email">Email ID:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="healthReport">Upload Health Report:</label>
+      <input type="file" id="healthReport" name="healthReport" accept=".pdf" required>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
